@@ -32,7 +32,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
 	@Override
 	public void addConnectionFactories(ConnectionFactoryConfigurer connectionFactoryConfigurer, Environment environment) {
 		connectionFactoryConfigurer.addConnectionFactory(new GitHubConnectionFactory(
-				environment.getProperty("spring.social.github.appId"),
+				environment.getProperty ("spring.social.github.appId"),
 				environment.getProperty("spring.social.github.appSecret")));
 
 		connectionFactoryConfigurer.addConnectionFactory(new TwitterConnectionFactory(

@@ -38,11 +38,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
     //embedded-redis
-    implementation 'it.ozimov:embedded-redis:0.7.2'
-    implementation 'io.jsonwebtoken:jjwt:0.9.1'
-    implementation 'io.springfox:springfox-swagger2:2.6.1'
+//    implementation 'it.ozimov:embedded-redis:0.7.2'
+//    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+//    implementation 'io.springfox:springfox-swagger2:2.6.1'
     implementation 'io.springfox:springfox-swagger-ui:2.6.1'
     implementation 'net.rakugakibox.util:yaml-resource-bundle:1.1'
     implementation 'com.google.code.gson:gson'
@@ -57,20 +57,21 @@ dependencies {
     implementation "org.springframework.social:spring-social-web:$springSocialVersion"
     implementation "org.springframework.social:spring-social-facebook:$springSocialFacebookVersion"
     implementation "org.springframework.security:spring-security-crypto:$springSecurityVersion"
-
-    compile("org.springframework.social:spring-social-security:${springSocialVersion}")
-
-    compile("org.springframework.social:spring-social-twitter:${springSocialTwitterVersion}")
-    compile("org.springframework.social:spring-social-linkedin:${springSocialLinkedInVersion}")
-    compile("org.springframework.social:spring-social-github:${springSocialGithubVersion}")
-//    compile("org.springframework.session:spring-session:${springSessionVersion}")
-    compile("org.springframework.session:spring-session-data-redis")
+    implementation  "org.springframework.social:spring-social-security:${springSocialVersion}"
+    implementation  "org.springframework.social:spring-social-twitter:${springSocialTwitterVersion}"
+    implementation  "org.springframework.social:spring-social-linkedin:${springSocialLinkedInVersion}"
+    implementation  "org.springframework.social:spring-social-github:${springSocialGithubVersion}"
+//    compile  "org.springframework.session:spring-session:${springSessionVersion}")
 
 
-    compile("com.github.kstyrc:embedded-redis:0.6")
-    compile("kr.pe.kwonnam.freemarker:freemarker-template-inheritance:0.4.RELEASE")
-
+    compile  "kr.pe.kwonnam.freemarker:freemarker-template-inheritance:0.4.RELEASE"
     implementation 'org.springframework.boot:spring-boot-autoconfigure'
 
+    // redis
     compile group: 'redis.clients', name: 'jedis'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation  "org.springframework.session:spring-session-data-redis"
+    implementation 'it.ozimov:embedded-redis:0.7.2'
+
+//    compile  "com.github.kstyrc:embedded-redis:0.6")
 }

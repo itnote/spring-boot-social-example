@@ -29,7 +29,7 @@ public class FrontUserDetail implements SocialUserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> authorities = new HashSet<>(1);
-		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+		authorities.add(new SimpleGrantedAuthority  ("ROLE_USER"));
 		return authorities;
 	}
 
