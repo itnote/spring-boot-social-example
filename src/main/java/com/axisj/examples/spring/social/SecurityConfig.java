@@ -12,20 +12,22 @@ import org.springframework.embedded.RedisServerPort;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import org.springframework.session.web.http.CookieSerializer;
+import org.springframework.session.web.http.DefaultCookieSerializer;
 import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 @EnableEmbeddedRedis
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 864000)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 864000)
+@EnableRedisHttpSession
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -98,10 +100,35 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return userDetailsService;
 	}
 
+//	@Bean
+//	public JedisConnectionFactory connectionFactory( ) {
+//		JedisConnectionFactory connection = new JedisConnectionFactory();
+////		connection.setPort(port);
+//		return connection;
+//	}
+
 	@Bean
 	public JedisConnectionFactory connectionFactory(@RedisServerPort int port) {
 		JedisConnectionFactory connection = new JedisConnectionFactory();
 		connection.setPort(port);
 		return connection;
 	}
+
+//	@Bean
+//	public JedisConnectionFactory jedisConnectionFactory() {
+//		System.out.println ("jedis11:"  );
+//		JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
+//		System.out.println ("jedis:" +jedisConnectionFactory  );
+//		return jedisConnectionFactory;
+//	}
+
+	@Bean
+	public CookieSerializer cookieSerializer()
+	{
+		DefaultCookieSerializer serializer = new DefaultCookieSerializer();
+		// 위 레디스 처럼 serializer 의 각종 설정 가능.
+		// tomcat context 로 설정한 쿠키 기능들도 여기서 설정가능.
+		return serializer;
+	}
+
 }

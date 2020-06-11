@@ -44,6 +44,8 @@ class EmbeddedRedisConfiguration {
 
 	@Bean
 	public static RedisServerBean redisServer(ConfigurableEnvironment env) {
+
+		System.out.println ("start::");
 		RedisServerBean bean = new RedisServerBean();
 		env.getPropertySources().addLast(bean);
 		return bean;
